@@ -60,6 +60,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         }
     }
 
+
     private void registerUser(){
         String email=etEmailRegister.getText().toString().trim();
         String password=etPasswordRegister.getText().toString().trim();

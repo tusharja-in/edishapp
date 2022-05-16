@@ -3,12 +3,16 @@
     package="com.visit.edishapp">
 
     <application
+        android:name="util.DocumentApi"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Edishapp">
+        <activity
+            android:name=".DocumentListActivity"
+            android:exported="true" />
         <activity
             android:name=".ForgotPassword"
             android:exported="true" />

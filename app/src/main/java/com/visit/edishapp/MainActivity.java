@@ -19,6 +19,8 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import util.DocumentApi;
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
     private TextView register,tvForgot;
 
@@ -96,7 +98,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     if(user.isEmailVerified()) {
                         Toast.makeText(MainActivity.this, "Success login!", Toast.LENGTH_LONG).show();
                         //
-                        startActivity(new Intent(MainActivity.this,DocumentView.class));
+                        //String currentUserId = task.getResult().getUser().getUid();
+                        final String currentUserId = user.getUid();
+                        DocumentApi documentApi=DocumentApi.getInstance();
+                        documentApi.setUserId(currentUserId);
+                        Intent intent = new Intent(MainActivity.this, DocumentView.class);
+                        //intent.putExtra("username", name);
+                        intent.putExtra("userId", currentUserId);
+                        startActivity(intent);
+
+                        //startActivity(new Intent(MainActivity.this,DocumentView.class));
                     }else{
                         user.sendEmailVerification();
                         Toast.makeText(MainActivity.this,"check your mail",Toast.LENGTH_LONG).show();
@@ -104,6 +115,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     progressBar.setVisibility(View.GONE);
                 }else{
                     Toast.makeText(MainActivity.this,"Failed to login!",Toast.LENGTH_LONG).show();
+                    progressBar.setVisibility(View.GONE);
                 }
 
             }
